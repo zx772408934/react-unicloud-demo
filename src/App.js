@@ -1,26 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css"
+//引入路由配置
+import ZXRouter from './router/router'
+//引入antd-mobile CSS
+import 'antd-mobile/dist/antd-mobile.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import 'react-animated-router/animate.css'; //引入默认的动画样式定义
+
+import store from "./store/store"
+
+import { Provider } from 'react-redux'
+
+//处理url参数
+function getRequest() {
+  var url = decodeURIComponent(window.location.href);
+  var theRequest = new Object();
+  if (url.indexOf("?") !== -1) {
+    var str = url.split('?')[1];
+    let strs = str.split("&");
+    for (var i = 0; i < strs.length; i++) {
+      theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);
+    }
+  }
+  return theRequest;
+}
+class App extends React.Component {
+  componentDidMount() {
+    //自适应单位rem
+    document.getElementsByTagName('html')[0].style.fontSize = document.getElementsByTagName('html')[0].offsetWidth /
+      7.50 + 'px';
+
+    if (getRequest().actId) {
+      localStorage.setItem('actId', getRequest().actId);
+    }
+  }
+  render() {
+    return (
+      <div className='App'>
+        <Provider store={store}>
+          <ZXRouter></ZXRouter>
+        </Provider>
+      </div>
+    );
+  }
 }
 
 export default App;

@@ -4,11 +4,15 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+
+
+// const INCREMENT = 'INCREMENT'
+// const incrementAction = {"type": INCREMENT, "count": 12121}
+// store.dispatch(incrementAction);
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <App></App>
+  ,document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

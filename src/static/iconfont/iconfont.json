@@ -1,0 +1,16 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "9402940",
+      "name": "对",
+      "font_class": "changyongicon-",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    }
+  ]
+}
