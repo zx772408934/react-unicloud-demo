@@ -26,8 +26,15 @@ class Login extends React.Component{
         this.getCode = this.getCode.bind(this);
         this.sub = this.sub.bind(this);
     }
-   
+    
     componentDidMount(){
+        // $request.fetchRequest("post","testOne",{a:1}
+        // ,res=>{
+        //     console.log(res);
+        // }
+        // ,err=>{
+        //     console.log(err);
+        // })
         // console.log(this.props)
     }
     componentWillUnmount(){
@@ -52,14 +59,14 @@ class Login extends React.Component{
             phone:event.target.value
         });
     }
-    //验证码受控
+    //密码受控
     handleCodeChange(event){
         if(event.target.value.length>6){
             return;
         }
         if(event.target.value.length===0){
             this.setState({
-                codeTips:'验证码不能为空'
+                codeTips:'密码不能为空'
             });
         }
         else{
@@ -115,37 +122,36 @@ class Login extends React.Component{
     }
     //注册/登录
     sub(){
-        if(this.state.phone.length===0){
-            this.setState({
-                phoneTips:'手机号不能为空'
-            });
-            return;
-        }
-        if(this.state.code.length===0){
-            this.setState({
-                codeTips:'验证码不能为空'
-            });
-            return;
-        }
-        if(!(/^[1][3,4,5,6,7,8,9][0-9]{9}$/).test(this.state.phone)){
-            this.setState({
-                phoneTips:'请输入正确的手机号'
-            });
-            return;
-        }
-        if(!(/^[0-9]{6}$/).test(this.state.code)){
-            this.setState({
-                codeTips:'请输入正确的验证码'
-            });
-            return;
-        }
-        if(!this.state.isChecked){
-            Toast.info( '请同意服务协议' , 1.5 , null , false );
-            return;
-        }
+        // if(this.state.phone.length===0){
+        //     this.setState({
+        //         phoneTips:'手机号不能为空'
+        //     });
+        //     return;
+        // }
+        // if(this.state.code.length===0){
+        //     this.setState({
+        //         codeTips:'验证码不能为空'
+        //     });
+        //     return;
+        // }
+        // if(!(/^[1][3,4,5,6,7,8,9][0-9]{9}$/).test(this.state.phone)){
+        //     this.setState({
+        //         phoneTips:'请输入正确的手机号'
+        //     });
+        //     return;
+        // }
+        // if(!(/^[0-9]{6}$/).test(this.state.code)){
+        //     this.setState({
+        //         codeTips:'请输入正确的验证码'
+        //     });
+        //     return;
+        // }
+        // if(!this.state.isChecked){
+        //     Toast.info( '请同意服务协议' , 1.5 , null , false );
+        //     return;
+        // }
         Toast.loading( 'Loading...' , 0 , null , true );
-        $request.fetchRequest("post","userLogin",{
-            act_id:localStorage.getItem('actId'),
+        $request.fetchRequest("post","login",{
             phone:this.state.phone,
             code:this.state.code
         },res=>{
@@ -181,8 +187,8 @@ class Login extends React.Component{
                         </div>
                         <div className="list">
                             <div className="inputValue">
-                                <Input onChange={this.handleCodeChange} value={this.state.code} placeholder='验证码'></Input>
-                                <span className="getCode" onClick={this.getCode}>{this.state.codeInfo}</span>
+                                <Input onChange={this.handleCodeChange} value={this.state.code} placeholder='密码'></Input>
+                                {/* <span className="getCode" onClick={this.getCode}>{this.state.codeInfo}</span> */}
                             </div>
                             <div className="tips">{this.state.codeTips}</div>
                         </div>

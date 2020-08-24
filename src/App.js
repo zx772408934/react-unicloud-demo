@@ -5,7 +5,6 @@ import ZXRouter from './router/router'
 //引入antd-mobile CSS
 import 'antd-mobile/dist/antd-mobile.css'
 
-import 'react-animated-router/animate.css'; //引入默认的动画样式定义
 
 import store from "./store/store"
 
