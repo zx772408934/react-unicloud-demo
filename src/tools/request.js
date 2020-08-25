@@ -18,9 +18,9 @@ const httpRequest = {
             }
             fetch(this.httpUrl.apiUrl+url,{
                 method:'post',
-                body:formData,
+                body:JSON.stringify(params),
                 headers:{
-                    "Content-Type":"application/x-www-form-urlencoded"
+                    "Content-Type":"application/json"
                 }
             }).then( res => {
                 /*
